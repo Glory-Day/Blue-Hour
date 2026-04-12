@@ -1,0 +1,54 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  bar.yuck — Horizontal and vertical bar layout widgets.
+;;  Horizontal bar: left / center / right via centerbox.
+;;  Vertical bar:   top / middle / bottom via vbox.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Horizontal bar layout.
+;; Left:   OS island + Workspace island.
+;; Center: Music island + Time-Date island.
+;; Right:  Messages island + System island + Power island.
+(defwidget bar-h []
+  (centerbox :class "bar bar-horizontal"
+             :orientation "h"
+    (box :orientation "h"
+         :space-evenly false
+         :halign "start"
+         :valign "center"
+         :spacing 6
+      (os-island)
+      (workspace-island))
+    (box :orientation "h"
+         :space-evenly false
+         :halign "center"
+         :valign "center"
+         :spacing 6
+      (music-island)
+      (time-island))
+    (box :orientation "h"
+         :space-evenly false
+         :halign "end"
+         :valign "center"
+         :spacing 6
+      (messages-island)
+      (system-island)
+      (power-island))))
+
+;; Vertical bar layout.
+;; Top:    OS island + Workspace island.
+;; Middle: Music island + Time-Date island (expands to fill).
+;; Bottom: Messages island + System island + Power island.
+(defwidget bar-v []
+  (box :class "bar bar-vertical"
+       :orientation "v"
+       :space-evenly false
+       :halign "center"
+       :spacing 8
+    (os-island)
+    (workspace-island)
+    (time-island)
+    (music-island)
+    (box :vexpand true)
+    (messages-island)
+    (system-island)
+    (power-island)))

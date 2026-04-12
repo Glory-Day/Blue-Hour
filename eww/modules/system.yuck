@@ -1,0 +1,55 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  system.yuck — System island widget.
+;;  Shows network type and battery (laptop only).
+;;  Full mode:    icon + label.
+;;  Compact mode: icon only.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget system-island []
+  (button
+    :class "island sys-island"
+    :onclick `eww --config ~/.config/eww/config open popup-system-0`
+    (box :orientation "h"
+         :space-evenly false
+         :halign "center"
+         :valign "center"
+         :spacing 8
+
+      ;; Network: Wi-Fi icon with SSID or LAN icon.
+      ;; Label hidden at compact level >= 2.
+      (box :class "sys-item"
+           :orientation "h"
+           :space-evenly false
+           :spacing 4
+           :tooltip {network.name}
+        (image :path "/home/glory-day/.config/eww/config/icons/${network.icon}.svg"
+               :image-width 15
+               :image-height 15)
+        (revealer
+          :transition "slideright"
+          :reveal {resolution.wifi_show_ssid}
+          :duration "200ms"
+          (label :class "sys-label"
+                 :text {network.type == "wifi" ? network.name : "LAN"}
+                 :limit-width 10)))
+
+      ;; Battery: only shown on laptop (battery.exists = true).
+      ;; Percentage label hidden at compact level >= 3.
+      (revealer
+        :transition "slideright"
+        :reveal {battery.exists}
+        :duration "200ms"
+        (box :class "sys-item"
+             :orientation "h"
+             :space-evenly false
+             :spacing 4
+             :tooltip "Battery: ${battery.percent}% (${battery.status})"
+          (image :path "/home/glory-day/.config/eww/config/icons/${battery.icon}.svg"
+                 :image-width 15
+                 :image-height 15)
+          (revealer
+            :transition "slideright"
+            :reveal {resolution.battery_show_percent}
+            :duration "200ms"
+            (label :class "sys-label"
+                   :text "${battery.percent}%")))))))

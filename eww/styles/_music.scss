@@ -1,0 +1,31 @@
+// ============================================================
+// _music.scss — Music island styles.
+// Only visible when a player is active (playing or paused).
+// Full mode:    icon + title + artist.
+// Compact mode: icon only (vertical bar).
+// ============================================================
+
+
+.music-island {
+  border-color: rgba($purple-fg, 0.35);
+  gap: 0.4em;
+  overflow: hidden;
+
+  &:hover {
+    border-color: $purple-fg;
+    background-color: $purple-subtle;
+  }
+}
+
+.music-text-box { gap: 0.05em; }
+
+.music-title {
+  font-size: $fz-sm;
+  font-weight: bold;
+  color: $fg-default;
+}
+
+.music-artist { font-size: 0.77em; color: $fg-muted; }
+
+// Vertical bar: hide text, show icon only.
+.bar-vertical .music-text-box { display: none; }

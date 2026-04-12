@@ -1,0 +1,42 @@
+// ============================================================
+// _power.scss — Power island and power menu popup styles.
+// ============================================================
+
+
+.power-island {
+  padding: $island-py 0.65em;
+  border-color: rgba($red-fg, 0.28);
+  cursor: pointer;
+
+  &:hover {
+    border-color: $red-fg;
+    background-color: $red-subtle;
+  }
+}
+
+.power-menu-box {
+  background-color: rgba($bg-overlay, 0.96);
+  border: 1px solid $border-default;
+  border-radius: 1em;
+  padding: 0.5em;
+  box-shadow: $island-shadow;
+}
+
+.pmenu-btn {
+  border-radius: 0.55em;
+  padding: 0.55em 0.85em;
+  font-size: $fz-base;
+  cursor: pointer;
+  gap: 0.65em;
+  align-items: center;
+
+  transition: background-color 140ms ease;
+
+  &:hover { background-color: rgba($fg-default, 0.1); }
+}
+
+.pmenu-shutdown { color: $red-fg;    &:hover { background-color: $red-subtle;    } }
+.pmenu-reboot   { color: $orange-fg; &:hover { background-color: $orange-subtle; } }
+.pmenu-lock     { color: $blue-fg;   &:hover { background-color: $blue-subtle;   } }
+.pmenu-suspend,
+.pmenu-logout   { color: $fg-muted; }

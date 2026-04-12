@@ -1,0 +1,47 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  variables.yuck — All defpoll, deflisten, and defvar.
+;;  Imported first by eww.yuck so all variables are available
+;;  to every other module.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Resolution and display flags. Updated every 2 seconds.
+;; resolution-decider.sh reads cache and returns compact flags.
+(defpoll resolution :interval "2s"
+  :initial "{\"form\":\"horizontal\",\"compact_level\":0,\"bar_width\":1904,\"os_show_text\":true,\"wifi_show_ssid\":true,\"time_show_date\":true,\"time_date_full\":true,\"battery_show_percent\":true,\"music_show_text\":true}"
+  `~/.config/eww/config/scripts/resolution-decider.sh`)
+
+;; Current time. Updated every second for the clock display.
+(defpoll time :interval "1s"
+  `date +"%H:%M"`)
+
+;; Current date in full and abbreviated formats.
+(defpoll date-full  :interval "60s" `date +"%a, %b %d"`)
+(defpoll date-short :interval "60s" `date +"%a"`)
+
+;; Battery information as JSON. Updated every 30 seconds.
+;; Returns exists:false on desktop machines.
+(defpoll battery :interval "30s"
+  :initial "{\"exists\":false,\"percent\":0,\"status\":\"none\",\"icon\":\"bat-full\"}"
+  `~/.config/eww/config/scripts/battery.sh`)
+
+;; Network information as JSON. Updated every 5 seconds.
+(defpoll network :interval "5s"
+  :initial "{\"type\":\"none\",\"icon\":\"net-none\",\"name\":\"...\",\"connected\":false}"
+  `~/.config/eww/config/scripts/network.sh`)
+
+;; Music player state as JSON. Updated every 2 seconds.
+;; Returns playing:false when no player is active.
+(defpoll music :interval "2s"
+  :initial "{\"playing\":false,\"title\":\"\",\"artist\":\"\",\"player\":\"\",\"icon\":\"music-idle\",\"status\":\"\"}"
+  `~/.config/eww/config/scripts/music.sh`)
+
+;; Hyprland workspace state. Uses deflisten for real-time
+;; updates via the Hyprland IPC socket.
+(deflisten workspaces
+  :initial "{\"active\":1,\"workspaces\":[1]}"
+  `~/.config/eww/config/scripts/workspaces.sh`)
+
+;; Unread message counts for Discord, Gmail, and Slack.
+(defpoll messages :interval "30s"
+  :initial "{\"discord\":{\"unread\":0},\"gmail\":{\"unread\":0},\"slack\":{\"unread\":0}}"
+  `~/.config/eww/config/scripts/messages.sh`)

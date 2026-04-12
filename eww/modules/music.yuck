@@ -1,0 +1,38 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  music.yuck — Music island widget.
+;;  Only visible when a player is active (playing or paused).
+;;  Full mode:    icon + title + artist.
+;;  Compact mode: icon only (vertical bar).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget music-island []
+  (revealer
+    :transition "slideleft"
+    :reveal {music.playing}
+    :duration "300ms"
+    (button
+      :class "island music-island"
+      :onclick `eww --config ~/.config/eww/config open popup-music-0`
+      :tooltip "${music.artist} — ${music.title}"
+      (box :orientation "h"
+           :space-evenly false
+           :halign "center"
+           :valign "center"
+           :spacing 6
+        (image :path "/home/glory-day/.config/eww/config/icons/${music.icon}.svg"
+               :image-width 16
+               :image-height 16)
+        (revealer
+          :transition "slideright"
+          :reveal {resolution.music_show_text}
+          :duration "200ms"
+          (box :class "music-text-box"
+               :orientation "v"
+               :space-evenly false
+               :valign "center"
+            (label :class "music-title"
+                   :text {music.title}
+                   :limit-width 22)
+            (label :class "music-artist"
+                   :text {music.artist}
+                   :limit-width 16)))))))

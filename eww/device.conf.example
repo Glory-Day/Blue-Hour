@@ -1,0 +1,44 @@
+# ============================================================
+# device.conf — Per-machine configuration for EWW dotfiles.
+# Copy this file to ~/.config/eww/device.conf and edit it
+# to match the current machine. This file is excluded from
+# version control to prevent sensitive data from being committed.
+#
+# Usage:
+#   cp ~/dotfiles/eww/device.conf.example ~/.config/eww/device.conf
+# ============================================================
+
+# Device type determines which widgets are shown.
+# Use "laptop" to enable the battery island.
+# Use "desktop" to hide the battery island entirely.
+DEVICE_TYPE="laptop"
+
+# Human-readable name for this machine.
+# Used in logs and the OS island tooltip.
+DEVICE_NAME="my-archlinux"
+
+# Primary monitor index used by eww windows.
+# Use `hyprctl monitors` to check available monitor indices.
+PRIMARY_MONITOR=0
+
+# Total number of monitors connected to this machine.
+# Each monitor will receive its own bar instance.
+MONITOR_COUNT=1
+
+# Wallpaper path for swww.
+# Supports static images and video files.
+WALLPAPER_PATH="$HOME/wallpapers/default.gif"
+
+# Gmail address for notmuch + lieer integration.
+# Leave empty to disable Gmail badge counting.
+GMAIL_ADDRESS=""
+
+# Slack API token for unread badge counting.
+# Generate a token at https://api.slack.com/apps
+# Leave empty to disable Slack badge counting.
+SLACK_TOKEN=""
+
+# Base font size for EWW widgets in pixels.
+# Increase this value on HiDPI displays.
+# All widget sizes scale proportionally from this value.
+EWW_FONT_SIZE=13

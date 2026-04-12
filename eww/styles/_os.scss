@@ -1,0 +1,21 @@
+// ============================================================
+// _os.scss — OS island styles.
+// Full mode: icon + "Arch" text.
+// Compact mode: icon only (compact level >= 1).
+// ============================================================
+
+
+.os-island {
+  border-color: rgba($blue-emphasis, 0.45);
+  gap: 0.35em;
+
+  &:hover {
+    border-color: $blue-fg;
+    background-color: $blue-subtle;
+  }
+}
+
+.os-text {
+  font-size: $fz-base;
+  color: $fg-default;
+}

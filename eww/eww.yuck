@@ -1,0 +1,18 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  eww.yuck — Main entry point.
+;;  Imports all modules in dependency order.
+;;  Bar geometry values are injected by responsive-patcher.sh
+;;  before the eww daemon starts.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(include "modules/variables.yuck")
+(include "modules/os.yuck")
+(include "modules/workspace.yuck")
+(include "modules/time.yuck")
+(include "modules/music.yuck")
+(include "modules/messages.yuck")
+(include "modules/system.yuck")
+(include "modules/power.yuck")
+(include "modules/popups.yuck")
+(include "modules/bar.yuck")
+(include "modules/windows.yuck")

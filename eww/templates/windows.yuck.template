@@ -1,0 +1,155 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  windows.yuck — All defwindow definitions.
+;;  Bar window sizes are injected by responsive-patcher.sh.
+;;  Monitor 0 and monitor 1 windows are defined here.
+;;  Additional monitors follow the same pattern.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Monitor 0
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Horizontal bar for monitor 0.
+;; Width and height are set by responsive-patcher.sh.
+(defwindow bar-horizontal-0
+  :monitor 0
+  :geometry (geometry
+    :x "0"
+    :y "6px"
+    :width "{{BAR_H_WIDTH_0}}px"
+    :height "{{BAR_H_HEIGHT}}px"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar-h))
+
+;; Vertical bar for monitor 0.
+(defwindow bar-vertical-0
+  :monitor 0
+  :geometry (geometry
+    :x "6px"
+    :y "0"
+    :width "{{BAR_V_WIDTH}}px"
+    :height "{{BAR_V_HEIGHT_0}}px"
+    :anchor "left center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar-v))
+
+;; Power menu popup for monitor 0.
+(defwindow popup-power-0
+  :monitor 0
+  :geometry (geometry
+    :x "8px"
+    :y "52px"
+    :width "160px"
+    :anchor "top right")
+  :stacking "overlay"
+  :focusable true
+  (power-menu-widget))
+
+;; Stub popup windows for monitor 0.
+(defwindow popup-os-0
+  :monitor 0
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top left")
+  :stacking "overlay" :focusable false
+  (popup-stub-os))
+
+(defwindow popup-calendar-0
+  :monitor 0
+  :geometry (geometry :x "0" :y "52px" :width "240px" :anchor "top center")
+  :stacking "overlay" :focusable false
+  (popup-stub-calendar))
+
+(defwindow popup-music-0
+  :monitor 0
+  :geometry (geometry :x "0" :y "52px" :width "280px" :anchor "top center")
+  :stacking "overlay" :focusable false
+  (popup-stub-music))
+
+(defwindow popup-messages-0
+  :monitor 0
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top right")
+  :stacking "overlay" :focusable false
+  (popup-stub-messages))
+
+(defwindow popup-system-0
+  :monitor 0
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top right")
+  :stacking "overlay" :focusable false
+  (popup-stub-system))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Monitor 1
+;;  Only opened by eww-launcher.sh when MONITOR_COUNT >= 2.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwindow bar-horizontal-1
+  :monitor 1
+  :geometry (geometry
+    :x "0"
+    :y "6px"
+    :width "{{BAR_H_WIDTH_1}}px"
+    :height "{{BAR_H_HEIGHT}}px"
+    :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar-h))
+
+(defwindow bar-vertical-1
+  :monitor 1
+  :geometry (geometry
+    :x "6px"
+    :y "0"
+    :width "{{BAR_V_WIDTH}}px"
+    :height "{{BAR_V_HEIGHT_1}}px"
+    :anchor "left center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar-v))
+
+(defwindow popup-power-1
+  :monitor 1
+  :geometry (geometry
+    :x "8px"
+    :y "52px"
+    :width "160px"
+    :anchor "top right")
+  :stacking "overlay"
+  :focusable true
+  (power-menu-widget))
+
+(defwindow popup-os-1
+  :monitor 1
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top left")
+  :stacking "overlay" :focusable false
+  (popup-stub-os))
+
+(defwindow popup-calendar-1
+  :monitor 1
+  :geometry (geometry :x "0" :y "52px" :width "240px" :anchor "top center")
+  :stacking "overlay" :focusable false
+  (popup-stub-calendar))
+
+(defwindow popup-music-1
+  :monitor 1
+  :geometry (geometry :x "0" :y "52px" :width "280px" :anchor "top center")
+  :stacking "overlay" :focusable false
+  (popup-stub-music))
+
+(defwindow popup-messages-1
+  :monitor 1
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top right")
+  :stacking "overlay" :focusable false
+  (popup-stub-messages))
+
+(defwindow popup-system-1
+  :monitor 1
+  :geometry (geometry :x "8px" :y "52px" :width "240px" :anchor "top right")
+  :stacking "overlay" :focusable false
+  (popup-stub-system))

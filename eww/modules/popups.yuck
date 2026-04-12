@@ -1,0 +1,38 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  popups.yuck — Stub popup widgets.
+;;  Each popup logs the current widget state to verify that
+;;  data polling is working before full UI is built.
+;;  Replace each defwidget body with the real UI when ready.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget popup-stub-os []
+  (box :class "popup-stub-box" :orientation "v" :spacing 4
+    (label :class "popup-stub-title" :text "OS")
+    (label :class "popup-stub-body"
+           :text "Arch Linux | compact: ${resolution.compact_level}")))
+
+(defwidget popup-stub-calendar []
+  (box :class "popup-stub-box" :orientation "v" :spacing 4
+    (label :class "popup-stub-title" :text "Calendar")
+    (label :class "popup-stub-body"  :text "${date-full} ${time}")))
+
+(defwidget popup-stub-music []
+  (box :class "popup-stub-box" :orientation "v" :spacing 4
+    (label :class "popup-stub-title" :text "Music")
+    (label :class "popup-stub-body"  :text "Player: ${music.player}")
+    (label :class "popup-stub-body"  :text "Title:  ${music.title}")
+    (label :class "popup-stub-body"  :text "Artist: ${music.artist}")
+    (label :class "popup-stub-body"  :text "Status: ${music.status}")))
+
+(defwidget popup-stub-messages []
+  (box :class "popup-stub-box" :orientation "v" :spacing 4
+    (label :class "popup-stub-title" :text "Messages")
+    (label :class "popup-stub-body"  :text "Discord: ${messages.discord.unread}")
+    (label :class "popup-stub-body"  :text "Gmail:   ${messages.gmail.unread}")
+    (label :class "popup-stub-body"  :text "Slack:   ${messages.slack.unread}")))
+
+(defwidget popup-stub-system []
+  (box :class "popup-stub-box" :orientation "v" :spacing 4
+    (label :class "popup-stub-title" :text "System")
+    (label :class "popup-stub-body"  :text "Network: ${network.type} — ${network.name}")
+    (label :class "popup-stub-body"  :text "Battery: ${battery.percent}% (${battery.status})")))

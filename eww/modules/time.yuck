@@ -1,0 +1,28 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  time.yuck — Time-Date island widget.
+;;  Full mode:    HH:MM · Day, Mon DD   (compact level 0)
+;;  Medium mode:  HH:MM · Day           (compact level 1-2)
+;;  Compact mode: HH:MM only            (compact level 3)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget time-island []
+  (button
+    :class "island time-island"
+    :onclick `eww --config ~/.config/eww/config open popup-calendar-0`
+    :tooltip "Calendar"
+    (box :orientation "h"
+         :space-evenly false
+         :halign "center"
+         :valign "center"
+         :spacing 6
+      (label :class "time-text" :text time)
+      (revealer
+        :transition "slideright"
+        :reveal {resolution.time_show_date}
+        :duration "200ms"
+        (box :orientation "h"
+             :space-evenly false
+             :spacing 6
+          (label :class "date-sep" :text "·")
+          (label :class "date-text"
+                 :text {resolution.time_date_full ? date-full : date-short}))))))

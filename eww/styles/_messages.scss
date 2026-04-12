@@ -1,0 +1,41 @@
+// ============================================================
+// _messages.scss — Messages island styles.
+// Shows unread badge counts for Discord, Gmail, and Slack.
+// Active badge is shown as a red pill with white text.
+// ============================================================
+
+
+.msg-island {
+  padding: $island-py 0.65em;
+  gap: 0.55em;
+}
+
+.msg-item {
+  gap: 0.22em;
+  align-items: center;
+}
+
+.msg-badge {
+  font-size: 0.77em;
+  color: $fg-subtle;
+  min-width: 1em;
+  text-align: center;
+}
+
+.msg-badge-active {
+  color: $fg-emphasis;
+  background-color: $red-fg;
+  border-radius: 0.8em;
+  padding: 0 0.3em;
+  font-size: 0.7em;
+  min-width: 1.1em;
+  text-align: center;
+}
+
+// Vertical bar: badges stacked vertically.
+.bar-vertical .msg-island {
+  flex-direction: column;
+  padding: 0.65em $island-py;
+  gap: 0.5em;
+  align-items: center;
+}

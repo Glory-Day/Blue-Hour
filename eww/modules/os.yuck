@@ -1,0 +1,24 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  os.yuck — OS island widget.
+;;  Full mode:    icon + "Arch" text (compact level 0).
+;;  Compact mode: icon only          (compact level >= 1).
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget os-island []
+  (button
+    :class "island os-island"
+    :onclick `eww --config ~/.config/eww/config open popup-os-0`
+    :tooltip "Arch Linux"
+    (box :orientation "h"
+         :space-evenly false
+         :halign "center"
+         :valign "center"
+         :spacing 6
+      (image :path "/home/glory-day/.config/eww/config/icons/os-arch.svg"
+             :image-width 16
+             :image-height 16)
+      (revealer
+        :transition "slideright"
+        :reveal {resolution.os_show_text}
+        :duration "200ms"
+        (label :class "os-text" :text "Arch")))))

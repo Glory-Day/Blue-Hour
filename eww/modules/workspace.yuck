@@ -1,0 +1,19 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  workspace.yuck — Workspace island widget.
+;;  Shows up to 10 workspaces as dots. Active workspace is
+;;  displayed as a wider pill. Clicking switches workspace.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget workspace-island []
+  (box :class "island ws-island"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+       :valign "center"
+       :spacing 4
+    (for ws in {workspaces.workspaces}
+      (button
+        :class {ws == workspaces.active ? "ws-dot ws-dot-active" : "ws-dot"}
+        :onclick `hyprctl dispatch workspace ${ws}`
+        :tooltip "Workspace ${ws}"
+        ""))))

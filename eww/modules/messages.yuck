@@ -1,0 +1,51 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  messages.yuck — Messages island widget.
+;;  Shows unread badge counts for Discord, Gmail, and Slack.
+;;  Badge number shown when unread > 0, dot when unread = 0.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget messages-island []
+  (button
+    :class "island msg-island"
+    :onclick `eww --config ~/.config/eww/config open popup-messages-0`
+    (box :orientation "h"
+         :space-evenly false
+         :halign "center"
+         :valign "center"
+         :spacing 8
+
+      ;; Discord badge.
+      (box :class "msg-item"
+           :orientation "h"
+           :space-evenly false
+           :spacing 3
+           :tooltip "Discord"
+        (image :path "/home/glory-day/.config/eww/config/icons/msg-discord.svg"
+               :image-width 15
+               :image-height 15)
+        (label :class {messages.discord.unread > 0 ? "msg-badge msg-badge-active" : "msg-badge"}
+               :text {messages.discord.unread > 0 ? "${messages.discord.unread}" : "·"}))
+
+      ;; Gmail badge.
+      (box :class "msg-item"
+           :orientation "h"
+           :space-evenly false
+           :spacing 3
+           :tooltip "Gmail"
+        (image :path "/home/glory-day/.config/eww/config/icons/msg-gmail.svg"
+               :image-width 15
+               :image-height 15)
+        (label :class {messages.gmail.unread > 0 ? "msg-badge msg-badge-active" : "msg-badge"}
+               :text {messages.gmail.unread > 0 ? "${messages.gmail.unread}" : "·"}))
+
+      ;; Slack badge.
+      (box :class "msg-item"
+           :orientation "h"
+           :space-evenly false
+           :spacing 3
+           :tooltip "Slack"
+        (image :path "/home/glory-day/.config/eww/config/icons/msg-slack.svg"
+               :image-width 15
+               :image-height 15)
+        (label :class {messages.slack.unread > 0 ? "msg-badge msg-badge-active" : "msg-badge"}
+               :text {messages.slack.unread > 0 ? "${messages.slack.unread}" : "·"})))))

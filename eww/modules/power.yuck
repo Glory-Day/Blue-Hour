@@ -1,0 +1,49 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  power.yuck — Power island and power menu popup widget.
+;;  Power island opens the power menu popup on click.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defwidget power-island []
+  (button
+    :class "island power-island"
+    :onclick `eww --config ~/.config/eww/config open popup-power-0`
+    :tooltip "Power menu"
+    (image :path "/home/glory-day/.config/eww/config/icons/power.svg"
+           :image-width 15
+           :image-height 15)))
+
+(defwidget power-menu-widget []
+  (box :class "power-menu-box"
+       :orientation "v"
+       :space-evenly false
+       :spacing 4
+    (button :class "pmenu-btn pmenu-lock"
+            :onclick `~/.config/eww/config/scripts/power.sh lock`
+      (box :orientation "h" :space-evenly false :spacing 10
+        (image :path "/home/glory-day/.config/eww/config/icons/power-lock.svg"
+               :image-width 15 :image-height 15)
+        (label :text "Lock")))
+    (button :class "pmenu-btn pmenu-suspend"
+            :onclick `~/.config/eww/config/scripts/power.sh suspend`
+      (box :orientation "h" :space-evenly false :spacing 10
+        (image :path "/home/glory-day/.config/eww/config/icons/power-suspend.svg"
+               :image-width 15 :image-height 15)
+        (label :text "Suspend")))
+    (button :class "pmenu-btn pmenu-logout"
+            :onclick `~/.config/eww/config/scripts/power.sh logout`
+      (box :orientation "h" :space-evenly false :spacing 10
+        (image :path "/home/glory-day/.config/eww/config/icons/power-logout.svg"
+               :image-width 15 :image-height 15)
+        (label :text "Logout")))
+    (button :class "pmenu-btn pmenu-reboot"
+            :onclick `~/.config/eww/config/scripts/power.sh reboot`
+      (box :orientation "h" :space-evenly false :spacing 10
+        (image :path "/home/glory-day/.config/eww/config/icons/power-reboot.svg"
+               :image-width 15 :image-height 15)
+        (label :text "Reboot")))
+    (button :class "pmenu-btn pmenu-shutdown"
+            :onclick `~/.config/eww/config/scripts/power.sh shutdown`
+      (box :orientation "h" :space-evenly false :spacing 10
+        (image :path "/home/glory-day/.config/eww/config/icons/power-shutdown.svg"
+               :image-width 15 :image-height 15)
+        (label :text "Shutdown")))))

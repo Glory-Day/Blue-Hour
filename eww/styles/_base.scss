@@ -1,0 +1,17 @@
+// ============================================================
+// _base.scss — Global reset and bar container styles.
+// ============================================================
+
+
+* {
+  all: unset;
+  font-family: $font-sans;
+  font-size: $fz-base;
+  color: $fg-default;
+  box-sizing: border-box;
+}
+
+.bar {
+  background: transparent;
+  padding: $bar-py $bar-px;
+}

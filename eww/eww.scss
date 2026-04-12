@@ -1,0 +1,17 @@
+// ============================================================
+// eww.scss — Style entry point.
+// Imports all style modules in dependency order.
+// Uses @import instead of @use for eww 0.5.0 compatibility.
+// ============================================================
+
+@import 'styles/variables';
+@import 'styles/base';
+@import 'styles/island';
+@import 'styles/os';
+@import 'styles/workspace';
+@import 'styles/time';
+@import 'styles/music';
+@import 'styles/messages';
+@import 'styles/system';
+@import 'styles/power';
+@import 'styles/popup';

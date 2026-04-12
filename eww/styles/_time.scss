@@ -1,0 +1,42 @@
+// ============================================================
+// _time.scss — Time-Date island styles.
+// Full mode:    HH:MM · Day, Mon DD
+// Medium mode:  HH:MM · Day          (compact level 1-2)
+// Compact mode: HH:MM only           (compact level 3)
+// ============================================================
+
+
+.time-island {
+  gap: 0.45em;
+}
+
+.time-text {
+  font-size: $fz-lg;
+  font-weight: bold;
+  color: $fg-default;
+  letter-spacing: 0.04em;
+}
+
+.date-sep  { font-size: $fz-sm; color: $fg-subtle; }
+.date-text { font-size: $fz-sm; color: $fg-muted;  }
+
+// Vertical bar: time rendered top-to-bottom.
+.bar-vertical .time-island {
+  flex-direction: column;
+  padding: 0.8em $island-py;
+  gap: 0.15em;
+  align-items: center;
+}
+
+.bar-vertical .time-text {
+  font-size: $fz-base;
+  writing-mode: vertical-rl;
+  letter-spacing: 0.15em;
+}
+
+.bar-vertical .date-text {
+  writing-mode: vertical-rl;
+  font-size: 0.77em;
+}
+
+.bar-vertical .date-sep { display: none; }

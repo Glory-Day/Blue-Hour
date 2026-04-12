@@ -1,0 +1,27 @@
+// ============================================================
+// _popup.scss — Stub popup window styles.
+// Minimal styling used before full popup UI is built.
+// Each popup logs current polling data for verification.
+// ============================================================
+
+
+.popup-stub-box {
+  background-color: rgba($bg-overlay, 0.96);
+  border: 1px solid $border-default;
+  border-radius: 0.9em;
+  padding: 0.8em 1em;
+  box-shadow: $island-shadow;
+  min-width: 200px;
+}
+
+.popup-stub-title {
+  font-size: $fz-base;
+  font-weight: bold;
+  color: $blue-fg;
+  margin-bottom: 0.3em;
+}
+
+.popup-stub-body {
+  font-size: $fz-sm;
+  color: $fg-muted;
+}

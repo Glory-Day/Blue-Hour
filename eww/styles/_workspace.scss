@@ -1,0 +1,43 @@
+// ============================================================
+// _workspace.scss — Workspace island styles.
+// Dots represent workspaces. Active workspace is a wider pill.
+// Clicking a dot switches to that workspace.
+// ============================================================
+
+
+.ws-island {
+  padding: $island-py 0.65em;
+  gap: 0.2em;
+}
+
+.ws-dot {
+  min-width:  0.55em;
+  min-height: 0.55em;
+  background-color: $border-default;
+  border-radius: 50%;
+  margin: 0.15em 0.18em;
+
+  transition: background-color 140ms ease,
+              min-width        140ms ease,
+              border-radius    140ms ease;
+
+  &:hover { background-color: $fg-muted; }
+}
+
+.ws-dot-active {
+  background-color: $blue-fg;
+  min-width: 1.35em;
+  border-radius: 0.28em;
+}
+
+// Vertical bar: dots stacked vertically.
+.bar-vertical .ws-island {
+  flex-direction: column;
+  padding: 0.65em $island-py;
+}
+
+.bar-vertical .ws-dot-active {
+  min-width:  0.55em;
+  min-height: 1.35em;
+  border-radius: 0.28em;
+}

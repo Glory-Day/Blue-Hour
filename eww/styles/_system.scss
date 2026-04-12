@@ -1,0 +1,35 @@
+// ============================================================
+// _system.scss — System island styles.
+// Shows network type and battery status.
+// Full mode:    icon + label.
+// Compact mode: icon only.
+// ============================================================
+
+
+.sys-island {
+  padding: $island-py 0.8em;
+  gap: 0.65em;
+}
+
+.sys-item {
+  gap: 0.22em;
+  align-items: center;
+}
+
+.sys-label { font-size: $fz-sm; color: $fg-muted; }
+
+// Vertical bar: items stacked, labels hidden.
+.bar-vertical .sys-island {
+  flex-direction: column;
+  padding: 0.65em $island-py;
+  gap: 0.55em;
+  align-items: center;
+}
+
+.bar-vertical .sys-item {
+  flex-direction: column;
+  gap: 0.1em;
+  align-items: center;
+}
+
+.bar-vertical .sys-label { display: none; }

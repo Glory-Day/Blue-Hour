@@ -1,0 +1,29 @@
+// ============================================================
+// _island.scss — Shared island base styles.
+// All island widgets inherit these rules.
+// ============================================================
+
+
+.island {
+  background-color: $bg-overlay-dim;
+  border: 1px solid $border-default;
+  border-radius: $island-radius;
+  padding: $island-py $island-px;
+  box-shadow: $island-shadow;
+  min-width: min-content;
+
+  transition: background-color 180ms ease,
+              border-color     180ms ease;
+
+  &:hover {
+    background-color: $bg-overlay;
+    border-color: $border-muted;
+  }
+}
+
+// Vertical bar islands expand to fill the bar width.
+.bar-vertical .island {
+  border-radius: 0.75em;
+  padding: $island-px $island-py;
+  min-width: unset;
+}
