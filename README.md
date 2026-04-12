@@ -1,3 +1,6 @@
+> [!WARNING]
+> This project is currently a **Work in Progress**. Features may be incomplete, unstable, or subject to change without notice.
+
 # dotfiles
 
 Personal dotfiles for Arch Linux + Hyprland ricing.
