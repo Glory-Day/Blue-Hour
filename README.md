@@ -1,10 +1,9 @@
 > [!WARNING]
 > This project is currently a **Work in Progress**. Features may be incomplete, unstable, or subject to change without notice.
 
-# dotfiles
+# Blue Hour
 
-Personal dotfiles for Arch Linux + Hyprland ricing.
-Managed with symbolic links via `install.sh`.
+A Hyprland + eww ricing for Arch Linux, inspired by the soft blue hues of early dawn.
 
 ## Stack
 
@@ -18,7 +17,6 @@ Managed with symbolic links via `install.sh`.
 | Music         | MPD / YouTube Music      |
 | Messages      | Vesktop + Gmail + Slack  |
 | Font (text)   | JetBrains Mono           |
-| Font (icons)  | Symbols Nerd Font        |
 | Icon set      | Material Icons SVG       |
 | Color scheme  | GitHub Primer Primitives |
 
@@ -27,7 +25,7 @@ Managed with symbolic links via `install.sh`.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+git clone git@github.com:Glory-Day/Blue-Hour.git ~/dotfiles
 cd ~/dotfiles
 ```
 
@@ -35,10 +33,9 @@ cd ~/dotfiles
 
 ```bash
 sudo pacman -S git eww hyprland hyprlock swww playerctl \
-               socat notmuch iw jq wezterm
+               socat notmuch iw jq python
 
-yay -S vesktop-bin ttf-jetbrains-mono-nerd \
-       ttf-material-symbols-variable-git
+yay -S wezterm-git vesktop-bin ttf-jetbrains-mono-nerd
 ```
 
 ### 3. Run the installer
@@ -64,7 +61,6 @@ Key fields to set:
 | WALLPAPER_PATH   | Path to wallpaper file for swww       |
 | GMAIL_ADDRESS    | Gmail address for notmuch integration |
 | SLACK_TOKEN      | Slack API token for unread badge      |
-| EWW_FONT_SIZE    | Base font size in px (default: 13)    |
 
 ### 5. Start Hyprland
 
@@ -103,26 +99,59 @@ in ~/dotfiles/eww/scripts/icon-installer.sh and re-run it.
 
 ```
 ~/dotfiles/
-├── install.sh                  - Symlink creator and first-time setup.
+├── install.sh                      - Symlink creator and first-time setup.
 ├── .gitignore
 ├── README.md
+├── LICENSE
 ├── eww/
-│   ├── eww.yuck                - Widget definitions and window layout.
-│   ├── eww.scss                - Styles using GitHub Primer color tokens.
-│   ├── start-eww.sh            - Startup script with form detection.
-│   ├── device.conf.example     - Per-machine config template.
-│   ├── icons/                  - Generated SVG icons (git-ignored).
-│   ├── material-icons/         - Sparse clone of material-design-icons (git-ignored).
+│   ├── eww.yuck                    - Entry point. Imports all modules.
+│   ├── eww.scss                    - Entry point. Imports all styles.
+│   ├── eww-launcher.sh             - Startup script. Starts daemon and opens bars.
+│   ├── device.conf.example         - Per-machine config template.
+│   ├── icons/                      - Generated SVG icons (git-ignored).
+│   ├── material-icons/             - Sparse clone of material-design-icons (git-ignored).
+│   ├── modules/                    - EWW widget definitions.
+│   │   ├── variables.yuck          - All defpoll and deflisten definitions.
+│   │   ├── os.yuck                 - OS island widget.
+│   │   ├── workspace.yuck          - Workspace island widget.
+│   │   ├── time.yuck               - Time-Date island widget.
+│   │   ├── music.yuck              - Music island widget.
+│   │   ├── messages.yuck           - Messages island widget.
+│   │   ├── system.yuck             - System island widget.
+│   │   ├── power.yuck              - Power island and menu widget.
+│   │   ├── bar.yuck                - Horizontal and vertical bar layouts.
+│   │   ├── popups.yuck             - Stub popup widgets.
+│   │   └── windows.yuck            - defwindow definitions (generated).
+│   ├── styles/                     - SCSS style modules.
+│   │   ├── _variables.scss         - Color tokens and size variables.
+│   │   ├── _base.scss              - Global reset and bar container.
+│   │   ├── _island.scss            - Shared island base styles.
+│   │   ├── _os.scss                - OS island styles.
+│   │   ├── _workspace.scss         - Workspace island styles.
+│   │   ├── _time.scss              - Time-Date island styles.
+│   │   ├── _music.scss             - Music island styles.
+│   │   ├── _messages.scss          - Messages island styles.
+│   │   ├── _system.scss            - System island styles.
+│   │   ├── _power.scss             - Power island and menu styles.
+│   │   └── _popup.scss             - Stub popup styles.
+│   ├── templates/
+│   │   └── windows.yuck.template   - Template for geometry injection.
 │   └── scripts/
-│       ├── icon-patcher.sh     - Fetch and colorize a single Material Icon.
-│       ├── icon-installer.sh      - Batch icon setup for all EWW widgets.
-│       ├── detect-form.sh      - Screen orientation and compact level detection.
-│       ├── battery.sh          - Battery status with desktop auto-hide.
-│       ├── network.sh          - Wi-Fi and LAN detection.
-│       ├── workspaces.sh       - Hyprland workspace state via socket.
-│       ├── music.sh            - MPD and YouTube Music via playerctl.
-│       ├── messages.sh         - Discord, Gmail, and Slack unread counts.
-│       └── power.sh            - Power menu actions.
+│       ├── monitor-listener.sh     - Hyprland monitor event listener daemon.
+│       ├── resolution-cacher.sh    - Writes monitor resolutions to cache files.
+│       ├── resolution-decider.sh   - Reads cache and outputs compact level JSON.
+│       ├── resolution-patcher.sh   - Injects pixel values into windows.yuck.
+│       ├── battery.sh              - Battery status with desktop auto-hide.
+│       ├── network.sh              - Wi-Fi and LAN detection.
+│       ├── workspaces.sh           - Hyprland workspace state via socket.
+│       ├── music.sh                - MPD and YouTube Music via playerctl.
+│       ├── messages.sh             - Discord, Gmail, and Slack unread counts.
+│       ├── power.sh                - Power menu actions.
+│       ├── icon-patcher.sh         - Fetch and colorize a single Material Icon.
+│       ├── icon-installer.sh       - Batch icon setup for all EWW widgets.
+│       └── lib/
+│           ├── island-resizer.sh   - Island minimum width constants.
+│           └── island-renderer.sh  - Compact level to display flag calculator.
 ├── hypr/
 │   ├── hyprland.conf
 │   └── hyprlock.conf
@@ -137,11 +166,35 @@ per-machine device.conf file to handle differences between machines.
 
 | What              | How                                         |
 |-------------------|---------------------------------------------|
-| Battery presence  | Auto-detected via /sys/class/power_supply   |
-| Monitor count     | Set manually in device.conf                 |
-| Device type       | Set manually in device.conf                 |
-| Wallpaper path    | Set manually in device.conf                 |
-| API tokens        | Set manually in device.conf (git-ignored)   |
+| Battery presence  | Auto-detected via /sys/class/power_supply.  |
+| Monitor count     | Set manually in device.conf.                |
+| Device type       | Set manually in device.conf.                |
+| Wallpaper path    | Set manually in device.conf.                |
+| API tokens        | Set manually in device.conf (git-ignored).  |
 
 device.conf is never committed to git. Copy device.conf.example
 and fill in the values for each new machine.
+
+## Responsive bar system
+
+The bar automatically adapts to any monitor resolution.
+
+```
+monitor-listener.sh (daemon)
+    ├── resolution-cacher.sh      - Caches monitor resolution to ~/.cache/eww/monitor-N.
+    └── resolution-patcher.sh     - Injects pixel values into windows.yuck.
+
+defpoll resolution (every 2 seconds)
+    └── resolution-decider.sh
+        ├── lib/island-resizer.sh  - Island minimum width constants.
+        └── lib/island-renderer.sh - Display flag calculator.
+```
+
+Compact level thresholds:
+
+| Level | OS          | Wi-Fi          | Date             |
+|-------|-------------|----------------|------------------|
+| 0     | Icon + text | Icon + SSID    | Full date        |
+| 1     | Icon only   | Icon + SSID    | Full date        |
+| 2     | Icon only   | Icon only      | Abbreviated date |
+| 3     | Icon only   | Icon only      | Time only        |
