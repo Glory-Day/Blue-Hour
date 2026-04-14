@@ -32,20 +32,32 @@ cd ~/dotfiles
 ### 2. Install required packages
 
 ```bash
-sudo pacman -S git eww hyprland hyprlock swww playerctl \
-               socat notmuch iw jq python
+sudo pacman -S hyprland swww hyprlock notmuch iw python ffmpeg \
+               socat playerctl jq git base-devel openssh \
+               pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber \
+               fcitx5 fcitx5-hangul fcitx5-gtk fcitx5-qt fcitx5-configtool \
+               grim slurp wl-clipboard noto-fonts-cjk less
 
-yay -S wezterm-git vesktop-bin ttf-jetbrains-mono-nerd
+# wezterm-git must be installed from the AUR.
+# The stable wezterm package has known issues on Wayland with Hyprland.
+yay -S wezterm-git eww vesktop-bin ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols-mono
 ```
 
-### 3. Run the installer
+### 3. Enable audio services
+
+```bash
+systemctl --user enable pipewire pipewire-pulse wireplumber
+systemctl --user start pipewire pipewire-pulse wireplumber
+```
+
+### 4. Run the installer
 
 ```bash
 chmod +x ~/dotfiles/install.sh
 ./install.sh
 ```
 
-### 4. Configure this machine
+### 5. Configure this machine
 
 ```bash
 nano ~/.config/eww/device.conf
@@ -62,11 +74,23 @@ Key fields to set:
 | GMAIL_ADDRESS    | Gmail address for notmuch integration |
 | SLACK_TOKEN      | Slack API token for unread badge      |
 
-### 5. Start Hyprland
+### 6. Start Hyprland
 
 ```bash
 start-hyprland
 ```
+
+## Keybindings
+
+| Key | Action |
+|-----|--------|
+| `Super + Q` | Open terminal (wezterm) |
+| `Super + C` | Close active window |
+| `Super + S` | Area screenshot to clipboard |
+| `Super + Shift + S` | Full screen screenshot to clipboard |
+| `Super + L` | Lock screen (hyprlock) |
+| `Super + 1-9` | Switch workspace |
+| `Ctrl + Space` | Toggle Korean input (fcitx5) |
 
 ## Adding a new icon
 
@@ -198,3 +222,8 @@ Compact level thresholds:
 | 1     | Icon only   | Icon + SSID    | Full date        |
 | 2     | Icon only   | Icon only      | Abbreviated date |
 | 3     | Icon only   | Icon only      | Time only        |
+
+## Known issues
+
+- `wezterm` (stable) fails to launch on Wayland with Hyprland. Use `wezterm-git` from the AUR instead.
+- `eww` is not available in the official Arch repositories or AUR as of 2026. Build from source or install via `yay -S eww` if it becomes available.
